@@ -1,0 +1,44 @@
+\documentclass{book}
+%\usepackage[left=25mm,right=25mm,top,buttom]{geometry}
+\usepackage[left=25mm,right=25mm]{geometry}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{lmodern}
+\usepackage{pifont}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{tabularx}
+
+\newcommand{\SalimFont}[1]{		
+		  \rmfamily#1
+			%\sffamily#1
+			%\ttfamily #1
+}
+
+%page de garde
+\title{
+\begin{center}Freeways Magazine\end{center}
+}
+
+\date{}
+\setcounter{secnumdepth}{4} 
+\setcounter{tocdepth}{3}
+\def\thesection{\Roman{section}} 
+\begin{document}
+\SalimFont
+
+\maketitle
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\rfoot{}
+\newpage
+%\tableofcontents
+\include{Introduction}
+\include{Free_Software_in_Tunisian_Government}
+
+\end{document}

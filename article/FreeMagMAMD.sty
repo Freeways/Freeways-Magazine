@@ -1,0 +1,457 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{FreeMag}[11/10/2014 v1.0 FreeMag]
+\PackageWarning{FreeMag}{FreeMag}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{wallpaper}
+\RequirePackage{changepage}
+\RequirePackage[explicit,clearempty]{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{wrapfig}	
+\RequirePackage{multirow}
+\RequirePackage{multicol}
+\RequirePackage{colortbl}
+\RequirePackage{pslatex}
+\RequirePackage{lettrine}
+\RequirePackage{pifont}
+\RequirePackage{color}
+\RequirePackage{fancybox} 
+\RequirePackage{listings}
+\RequirePackage{listingsutf8}
+\RequirePackage{lettrine}
+\RequirePackage{multirow}
+\RequirePackage{marvosym}
+\RequirePackage{charter} 				% Charter font for main content
+\RequirePackage{blindtext}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes,positioning}
+\RequirePackage{lipsum}
+\RequirePackage[ISBN=000-00-00000-00-0]{ean13isbn}
+\RequirePackage[colorlinks=false]{hyperref}
+\RequirePackage{geometry}
+
+\geometry{
+   paperwidth=216mm, paperheight=303mm,
+   left=23mm,  %% or inner=23mm
+   right=18mm, %% or outer=18mm
+   top=23mm, bottom=23mm,
+   headheight=\baselineskip,
+   headsep=7mm,
+   footskip=10mm
+}
+
+
+\hypersetup{
+	pdfauthor = {Med Ali Mortadha DAHMANI},		
+	pdftitle = {Journal, Magazine},
+	pdfsubject = {Journal, Magazine},
+  pdfcreator    = \LaTeX\ with package \flqq MAMD Magazine\frqq,
+  pdfproducer   = PDF\LaTeXe{},
+	pdfkeywords = {Journal, Magazine},
+		pdfpagemode = UseNone,%FullScreen,
+	hidelinks
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{
+language={[LaTeX]TeX},
+frameround=fttt,
+xleftmargin=15mm,
+xrightmargin=15mm,
+keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+identifierstyle=\ttfamily,
+commentstyle=\color[rgb]{0.133,0.545,0.133},
+stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+showstringspaces=false,
+basicstyle=\small,
+numberstyle=\footnotesize,
+numbers=left,
+stepnumber=1,
+numbersep=10pt,
+tabsize=2,
+breaklines=true,
+prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+breakatwhitespace=false,
+aboveskip={1.5\baselineskip},
+columns=fixed,
+upquote=true,
+extendedchars=true,
+frame=bottomline,
+inputencoding=utf8
+}
+
+
+
+%% Concoct some colours of our own
+\definecolor[named]{GreenTea}{HTML}{808080}
+\definecolor[named]{MilkTea}{HTML}{FFFF00}
+\definecolor[named]{SiennaA}{HTML}{25225B}%
+\definecolor[named]{LightSalmon}{HTML}{580000}%chap color band
+\definecolor[named]{LightSalmon2}{HTML}{FFFF00}%TOC color band
+
+
+%%% ---------------
+%%% DEFINITIONS
+%%% ---------------
+
+% Define separators
+\newcommand{\HorRule}[1]{\noindent\rule{\linewidth}{#1}} % Creating a horizontal rule
+
+\newcommand{\SepRule}{\noindent							 % Creating a separator
+						\begin{center}
+							\rule{250pt}{1pt}
+						\end{center}
+}						
+
+% Define Title en News input
+\newcommand{\JournalName}[1]{%
+		\begin{center}	
+			\Huge \usefont{T1}{augie}{m}{n}
+			#1%
+		\end{center}	
+		\par \normalsize \normalfont
+}
+		
+\newcommand{\JournalIssue}[1]{%
+		\begin{flushright}
+		\textsc{\textbf{\today}, N#1}\\
+		\textsc{Tunis, Tunisie}\\
+		\textsc{Prix 1.5Dt}
+		\end{flushright}
+		\par \normalsize \normalfont
+}
+
+\newcommand{\NewsItem}[1]{%
+		\usefont{T1}{augie}{m}{n} 	
+		\large #1 \vspace{4pt}
+		\par \normalsize \normalfont
+}
+		
+\newcommand{\NewsAuthor}[2]{%
+			\hfill par #1 \textsc{#2} \vspace{4pt}
+			\par \normalfont
+}	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Command to hold chapter illustration image
+\newcommand\chapterillustration{}
+
+%% Define how the chapter title is printed
+\titleformat{\chapter}{}{}{0pt}{
+%% Background image at top of page
+\ThisULCornerWallPaper{1}{\chapterillustration}
+%% Draw a semi-transparent rectangle across the top
+\tikz[overlay,remember picture]
+  \fill[LightSalmon,opacity=.3]
+  (current page.north west) rectangle 
+  ([yshift=-3cm] current page.north east);
+  %% Check if on an odd or even page
+  \strictpagecheck\checkoddpage
+  %% On odd pages, "logo" image at lower right
+  %% corner; Chapter number printed near spine
+  %% edge (near the left); chapter title printed
+  %% near outer edge (near the right).
+  \ifoddpage{
+    %\ThisLRCornerWallPaper{.35}{obj1}
+    \begin{tikzpicture}[overlay,remember picture]
+    %%\node[anchor=south west,
+      %xshift=20mm,yshift=-30mm,
+      %font=\sffamily\bfseries\huge] 
+      %at (current page.north west) 
+      %{\chaptername\ \thechapter};
+    \node[fill=SiennaA!80!black,text=white,
+      font=\Huge\bfseries, 
+      inner ysep=12pt, inner xsep=20pt,
+      rounded rectangle,anchor=east, 
+      xshift=-20mm,yshift=-30mm] 
+      at (current page.north east) {#1};
+    \end{tikzpicture}
+  }
+  %% On even pages, "logo" image at lower left
+  %% corner; Chapter number printed near outer
+  %% edge (near the right); chapter title printed
+  %% near spine edge (near the left).
+  \else {
+    %\ThisLLCornerWallPaper{.35}{}
+    \begin{tikzpicture}[overlay,remember picture]
+    %\node[anchor=south east,
+      %xshift=-20mm,yshift=-30mm,
+      %font=\sffamily\bfseries\huge] 
+      %at (current page.north east)
+      %{\chaptername\ \thechapter};
+    \node[fill=SiennaA!80!black,text=white,
+      font=\Huge\bfseries,
+      inner sep=12pt, inner xsep=20pt,
+      rounded rectangle,anchor=west,
+      xshift=20mm,yshift=-30mm] 
+      at ( current page.north west) {#1};
+    \end{tikzpicture}
+  }
+  \fi
+}
+%% Define how the TOC is printed
+\titleformat{name=\chapter,numberless}{}{}{0pt}{
+%% Draw a semi-transparent rectangle across the top
+\tikz[overlay,remember picture]
+  \fill[LightSalmon2!25!white]
+  (current page.north west) rectangle 
+  ([yshift=-3cm] current page.north east);
+  %% Check if on an odd or even page
+  \strictpagecheck\checkoddpage
+  %% On odd pages, "logo" image at lower right
+  %% corner; Chapter number printed near spine
+  %% edge (near the left); chapter title printed
+  %% near outer edge (near the right).
+  \ifoddpage{
+    \begin{tikzpicture}[overlay,remember picture]
+    \node[fill=SiennaA!80!black,text=white,
+      font=\Huge\bfseries, 
+      inner ysep=12pt, inner xsep=20pt,
+      rounded rectangle,anchor=east, 
+      xshift=-20mm,yshift=-30mm] 
+      at (current page.north east) {#1};
+    \end{tikzpicture}
+  }
+  %% On even pages, "logo" image at lower left
+  %% corner; Chapter number printed near outer
+  %% edge (near the right); chapter title printed
+  %% near spine edge (near the left).
+  \else {
+    \begin{tikzpicture}[overlay,remember picture]
+    \node[fill=SiennaA!80!black,text=white,
+      font=\Huge\bfseries,
+      inner sep=12pt, inner xsep=20pt,
+      rounded rectangle,anchor=west,
+      xshift=20mm,yshift=-30mm] 
+      at ( current page.north west) {#1};
+    \end{tikzpicture}
+  }
+  \fi
+}
+\titlespacing*{\chapter}{0pt}{0pt}{135mm}
+\titlespacing*{name=\chapter,numberless}{0pt}{0pt}{50mm}
+
+%% Set the uniform width of the colour box
+%% displaying the page number in footer
+%% to the width of "99"
+\newlength\pagenumwidth
+\settowidth{\pagenumwidth}{99}
+
+%% Define style of page number colour box
+\tikzset{pagefooter/.style={
+anchor=base,font=\sffamily\bfseries\small,
+text=white,fill=SiennaA!80!black,text centered,
+text depth=17mm,text width=\pagenumwidth}}
+
+
+%%%%%%%%%%
+%%% Re-define running headers on non-chapter pages
+%%%%%%%%%%
+\fancypagestyle{headings}{%
+  \fancyhf{}   % Clear all headers and footers first
+  %% Right headers on odd pages
+  \fancyhead[RO]{%
+    %% First draw the background rectangles
+    \begin{tikzpicture}[remember picture,overlay]
+    \fill[GreenTea!25!white] (current page.north east) rectangle (current page.south west);
+    \fill[white, rounded corners] ([xshift=-10mm,yshift=-20mm]current page.north east) rectangle ([xshift=15mm,yshift=17mm]current page.south west);
+    \end{tikzpicture}
+    %% Then the decorative line and the right mark
+    \begin{tikzpicture}[xshift=-.75\baselineskip,yshift=.25\baselineskip,remember picture,    overlay,fill=GreenTea,draw=GreenTea]\fill circle(3pt);\draw[semithick](0,0) -- (current page.west |- 0,0);\end{tikzpicture} \sffamily\itshape\small\nouppercase{\rightmark}
+  }
+
+  %% Left headers on even pages
+  \fancyhead[LE]{%
+    %% Background rectangles first
+    \begin{tikzpicture}[remember picture,overlay]
+    \fill[MilkTea!25!white] (current page.north east) rectangle (current page.south west);
+    \fill[white, rounded corners] ([xshift=-15mm,yshift=-20mm]current page.north east) rectangle ([xshift=10mm,yshift=17mm]current page.south west);
+    \end{tikzpicture}
+    %% Then the right mark and the decorative line
+    \sffamily\itshape\small\nouppercase{\leftmark}\ 
+    \begin{tikzpicture}[xshift=.5\baselineskip,yshift=.25\baselineskip,remember picture, overlay,fill=GreenTea,draw=GreenTea]\fill (0,0) circle (3pt); \draw[semithick](0,0) -- (current page.east |- 0,0 );\end{tikzpicture}
+  }
+
+  %% Right footers on odd pages and left footers on even pages,
+  %% display the page number in a colour box
+  \fancyfoot[RO,LE]{\tikz[baseline]\node[pagefooter]{\thepage};}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+%%%%%%%%%%
+%%% Re-define running headers on chapter pages
+%%%%%%%%%%
+\fancypagestyle{plain}{%
+  %% Clear all headers and footers
+  \fancyhf{}
+  %% Right footers on odd pages and left footers on even pages,
+  %% display the page number in a colour box
+  \fancyfoot[RO,LE]{\tikz[baseline]\node[pagefooter]{\thepage};}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\newcommand{\FreeRecto}[4]{
+\frontmatter
+
+%%%%%%%%%%%%%%
+%% Cover page
+%%%%%%%%%%%%%%
+
+%% No header nor footer on the cover
+\thispagestyle{empty}
+
+%% Cover illustration
+\ThisLLCornerWallPaper{1}{#1}
+
+%% Bar across the top
+\tikz[remember picture,overlay]%
+\node[fill=SiennaA,text=white,font=\LARGE\bfseries,text=Cornsilk,%
+minimum width=\paperwidth,minimum height=5em,anchor=north, fill opacity=1]%
+at (current page.north){\fontsize{32pt}{32pt}\selectfont #2};
+
+\vspace*{0.8\baselineskip}
+
+{\bfseries\scshape\color{gray}\fontsize{32pt}{32pt}\selectfont
+\begin{center}
+#3
+\end{center}
+}
+
+\vspace*{21cm}
+
+
+%{\LARGE\color{gray}
+%\begin{center}
+%"Stop looking the world through your Windows"
+%\end{center}
+%}
+%\vspace*{-2\baselineskip}
+{
+\tikz[remember picture,overlay]%
+\node[fill=SiennaA,font=\LARGE\bfseries,text=Cornsilk,%
+minimum width=\paperwidth,minimum height=3em,anchor=south]%
+ at (current page.south) {#4};
+}
+}
+
+\newcommand{\FreeToC}{
+\cleardoublepage
+\tableofcontents
+
+%% Main matter starts here; resets page-numberings to arabic numeral 1
+\mainmatter
+
+\pagestyle{headings}
+}
+
+\newcommand{\FreeChap}[2]{
+\renewcommand\chapterillustration{#1}
+\chapter{#2}
+}
+
+
+\newcommand{\note}{%
+\newpage
+%\lhead{bb}
+\vspace{2cm}
+\textbf{\huge \usefont{T1}{augie}{m}{n} Notes}\newline\newline\newline
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.\\
+.\dotfill.
+\newpage
+}
+
+\newcommand{\FreeVerso}{
+\pagestyle{empty}
+\newpage \mbox{}
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%
+%% Back cover
+%%%%%%%%%%%%%%%%%%%%%%
+
+%% Temporarily enlarge this page to push
+%% down the bottom margin
+\enlargethispage{3\baselineskip}
+\thispagestyle{empty}
+%\pagecolor[HTML]{0C0303}
+\pagecolor[HTML]{0E0407}
+
+\begin{center}
+\begin{minipage}{.8\textwidth}
+\color{Cornsilk}\Large\bfseries
+\lipsum[1]
+
+\begin{center}
+\huge\bfseries\sffamily\color{lime}'Freeways!'
+\end{center}
+
+\lipsum[2]
+\end{minipage}
+\end{center}
+
+\vspace*{\stretch{1}}
+
+\begin{center}
+\colorbox{white}{\EANisbn[SC4]}
+
+\vspace*{\baselineskip}
+
+\textbf{\textcolor{LightGoldenrod!50!Gold}{\Mundus~ Site web \textbullet\ \texttt{http://freeways.tn}}}
+
+\textbf{\textcolor{LightGoldenrod}{\Letter~ e-Mail \textbullet\ \texttt{contact@freeways.tn}}}
+
+\color{white}\JournalIssue{1}
+\end{center}
+}

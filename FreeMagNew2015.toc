@@ -1,5 +1,3 @@
-\contentsline {chapter}{\numberline {1}Circuit \'electronique}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Section I}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Section II}{2}{section.1.2}
-\contentsline {section}{\numberline {1.3}Section III}{3}{section.1.3}
-\contentsline {chapter}{\numberline {2}Freeways \& Technology}{4}{chapter.2}
+\contentsline {chapter}{\numberline {1}Kinect et Open Source: \relax \fontsize {10.95}{13.6}\selectfont \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \belowdisplayskip \abovedisplayskip \let \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ Quel avenir ensemble?}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Blender 3D!}{4}{chapter.2}
+\contentsline {chapter}{\numberline {3}Publication Assist\'ee par Ordinateur!}{6}{chapter.3}

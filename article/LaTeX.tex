@@ -1,0 +1,187 @@
+%\FreeChap{maga5}{Publication Assistée par Ordinateur}
+\FreeChap{maga5}{Publication Assistée par Ordinateur!}
+
+\vspace*{-60mm}
+
+\NewsItem{\hspace*{6mm}\LaTeX{} dans la littérature}
+\begin{multicols}{2}
+\TeX{}, des lettres grecques majuscules TEX (tau, epsilon et khi) abréviation du mot grec ancien \textbf{$\tau\epsilon\chi\nu\eta$} (tekhnê), \textit{\textcolor[rgb]{0.4,0.4,0.4}{ensemble des règles qui régisse un savoir ou un métier}}. \textbf{$\tau\epsilon\chi\nu\eta$}, est l'art, le savoir-faire, la science et la technique! Se prononce habituellement [latek] \textbf{/'la:t$\epsilon$k/}. La Chi ou Khi (capitale X, minuscule $\chi$), en grec $\chi$ , est la vingt-deuxième lettre de l'alphabet et elle était prononcée [k]. Le "X" à la fin du mot \LaTeX{} n'est pas un "x" majuscule alors, mais la lettre grec "Khi".\\
+\LaTeX{} se prononce donc "latek" et non pas "lateks"! 
+\end{multicols}
+
+\NewsItem{C'est quoi \LaTeX{}?}
+\begin{multicols}{2}
+C'est un langage de description de document et un système de composition de documents et de mise en page typographique bâti sur \TeX{} créé par \textbf{\textsl{Leslie LAMPORT}} en 1983, préfixé de l'abréviation du nom de l'auteur \LaTeX{} = \textbf{La}mport + \textbf{\TeX{}}. Utilisé principalement par les milieux scientifiques et mathématiques, il s'agit d'une collection de macro-commandes destinées à faciliter l'utilisation du "processeur de texte" \TeX{} de \textbf{\textsl{Donald \textsc{Knuth}}}. La première version utilisée largement, appelée \LaTeX{} 2.09, est sortie en 1984. Une révision majeure, appelée \LaTeXe{} est sortie en 1991 (maintenu par le \textbf{\LaTeX{} Project Team} depuis 1993). On écrit souvent LaTeX (\textcolor[rgb]{0,0,1}{\(\backslash\)LaTeX\{\}}), le logiciel permettant les mises en forme correspondant au logo pour donner \LaTeX{}.
+\end{multicols}
+
+\begin{multicols}{2}
+\begin{wrapfigure}[8]{l}{30mm}
+\includegraphics[height=36.5mm, trim =0 0 0 0, clip=true]{don-knuth.jpg}
+\end{wrapfigure}
+\textbf{\texttt{Donald Ervin \textsc{Knuth}}} \textit{né le 10 janvier 1938 à Milwaukee, Wisconsin, États-Unis est un informaticien américain de renom et professeur émérite en informatique à l'université \textbf{Stanford} US en tant que «professeur émérite de l'art de programmer».\\ Il est un des pionniers de l'algorithmique et a fait de nombreuses contributions dans plusieurs branches de l'informatique théorique. D.E. \textsc{Knuth} a créé deux logiciels libres, par la suite largement utilisés en typographie professionnelle et en mathématiques, \TeX{} et Metafont. Son intérêt pour la typographie l'a également poussé à créer la police \textbf{Computer Modern}, police par défaut de \TeX{}.}
+\end{multicols}
+
+\begin{multicols}{2}
+\begin{wrapfigure}[8]{l}{30mm}
+\includegraphics[height=36.5mm, trim =0 0 0 0 , clip=true]{Leslie_Lamport.jpg}
+\end{wrapfigure}
+\textbf{\texttt{Leslie \textsc{Lamport}}} \textit{né le 7 février 1941 à New York, est un chercheur en informatique américain, spécialiste de l'algorithmique réparti, a fait des études en mathématiques au \textbf{Massachusetts Institute of Technology} puis à l'université \textbf{Brandeis}. Il a notamment formulé en 1979 la relation «arrivé-avant» (en anglais «happened before»), qui permet d'obtenir un ordre partiel sur les actions dans des systèmes répartis. L. \textsc{Lamport} est principalement connu hors de la communauté scientifique de l'informatique comme le créateur de \LaTeX{} (basé lui-même sur \TeX{}, de Donald \textsc{Knuth}).}
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+Du fait de sa relative simplicité, il est devenu la méthode privilégiée d'écriture de documents techniques et scientifiques. Il est particulièrement utilisé dans ces domaines pour la production de documents de taille moyenne ou importante (livre, thèse ou article). Néanmoins, il peut aussi être employé pour générer des documents de types variés (lettres, transparents ou CV). Contrairement aux traitements de texte habituels, il n'est pas «tel écran, tel écrit» (\textbf{WYSIWYG}, What You See Is What You Get) : on ne voit pas à l'écran la manière dont le document sera imprimé ou projeté. Cette mise en forme sera faite par un logiciel appelé \textbf{latex} ou \textbf{pdflatex}. Dans un premier temps, l'auteur doit faire confiance au logiciel pour réaliser la mise en page, celui-ci est configuré pour les canons en la matière, pour appliquer les règles de l'art. Cela donne en général un résultat satisfaisant. D'ailleurs, l'auteur n'est que rarement typographe, et on peut considérer \LaTeX{} comme un collaborateur spécialisé en typographie, qui prendrait en charge toute la mise en forme du travail, tandis que l'auteur se consacrerait exclusivement au contenu. \textit{Chacun sa spécialité}! Donc c'est un langage de préparation de copie : on donne des instructions au typographe virtuel. Le document est simplement un fichier de texte pur contient les mots du texte auxquels on ajoute les instructions au typographe virtuel. Les instructions commencent toujours par une contre-oblique «\(\backslash\)», également appelée barre de fraction inversée, \textbf{anti-slash} ou \textbf{back-slash}. Par exemple, on tapera ce code pour avoir un document de base en \LaTeX{}:
+\vspace*{-2mm}
+\begin{lstlisting}[language={[LaTeX]TeX}, label=liste, caption=Code d'un fichier \LaTeX{} de base , inputencoding=utf8/latin1, frame=single,numbers=left, numberstyle=\tiny]
+\documentclass{article}
+\begin{document}
+	Hello \textbf{\LaTeX}!
+\end{document}
+\end{lstlisting}
+Lorsque le typographe virtuel, le programme, traitera le fichier, il reconnaîtra les commandes et générera un document contient :\\
+
+Hello \textbf{\LaTeX}!\\
+
+L'auteur voudra sans doute donner des instructions de plus en plus précises au typographe virtuel, afin que le document produit ressemble à ce qu'il désire! Bref, laisser moins d'initiative au typographe, voire rompre avec les canons. C'est tout à fait possible, mais c'est comme tout : s'il est facile de faire des choses simples, plus on veut faire des choses compliquées, plus il faut connaître d'instructions...
+\end{multicols}
+
+\NewsItem{Pourquoi choisir \LaTeX{}?}
+\begin{multicols}{2}
+On peut se demander pourquoi apprendre un langage d'instructions alors que l'on peut faire la même chose avec la souris en utilisant un simple traitement de texte. Les raisons qui peuvent amener à choisir \LaTeX{} sont :
+		\begin{dingo}
+			\item la gratuité: \LaTeX{} Project Public License (\textbf{LPPL}) est une licence logicielle initialement rédigée pour \LaTeX{}. Les logiciels distribués sous cette licence peuvent être vus comme libres
+    \item le multiplateforme: un même fichier peut être compilé sur un compatible \textbf{PC} sous Linux ou FreeBSD, Microsoft Windows, sur un \textbf{Apple Macintosh} sous Mac OS, sur une \textbf{Station Sun} sous Solaris, le résultat sera exactement le même, on peut donc simplement s'échanger ses fichiers, ou bien développer son document sur plusieurs machines différentes
+    \item la robustesse: s'il est possible de faire des erreurs en écrivant les instructions ou de ne pas réussir à obtenir exactement ce que l'on veut, en revanche, le programme est très stable et ne plante pas, il n'y a pas de corruption de fichier :
+		\begin{itemize}
+        \item la légèreté des fichiers: ce ne sont que des fichiers texte, les images sont des fichiers à côté, on a ainsi des fichiers très légers, peu susceptibles de se corrompre
+				\item c'est un langage compilé: contrairement à un «tel écran, tel écrit», le programme n'a pas à mettre à jour en permanence la pagination, les numéros de page de la table des matière, ceci est fait lors de la compilation, opération qui génère le document final, ce qui réduit les sources d'erreur
+		\end{itemize}
+    \item séparation du fond et de la forme: l'auteur se consacre exclusivement au fond, au sens de ce qu'il écrit, et n'est pas distrait par la mise en forme
+    \item l'esthétique: le résultat est conforme aux canons de la typographie, en particulier en ce qui concerne les formules mathématiques
+		\end{dingo}
+\end{multicols}
+
+\NewsItem{\LaTeX{}, c'est compliqué ?}
+\begin{multicols}{2}
+Certes, il faut apprendre des instructions. Mais on peut se contenter de connaissances minimales :
+\begin{dingo}
+        \item le squelette du fichier sera quasiment toujours le même, on peut donc avoir un fichier de base contenant déjà les premières instructions, en particulier l'en-tête
+    \item réfléchissez bien : la plupart du temps, vous n'utilisez que très peu d'outils de votre traitement de texte, de même, vous n'aurez à connaître que peu d'instructions, et dans les cas particuliers, vous pourrez vous reporter à un manuel
+    \item le choix d'un éditeur de texte adapté facilite grandement la tâche : il insérera pour vous les instructions les plus communes à l'aide de la souris (bouton graphique ou menu)
+	\end{dingo}
+\LaTeX{} ne deviendra compliqué que si vous désirez faire des choses vraiment spéciales, comme par exemple dessiner ceci.
+
+\begin{center}
+\begin{tikzpicture}
+\newcount\angle
+    \newcount\order
+    \order=10.8
+    \newcount\arity
+    \pgfmathsetcount{\arity}{\order-1}
+    \foreach \x in {1,...,\order} {
+        \foreach \y/\symbol in {0/-,1/-} {
+            \pgfmathsetcount{\angle}
+                {(180*(2*\x+\y))/\order+90}
+            \inetcell[at=(\the\angle-90:\the\order*1.8ex),
+                arity=\order-1](c\y\x){\symbol}[\angle]
+            \inetwirefree(c\y\x.pal)
+        }
+    }
+
+    \newcount\nextcell
+    \newcount\nextport
+    \newcount\depth
+    \foreach \x in {1,...,\order} {
+        \foreach \y in {1,...,\arity} {
+            \pgfmathsetcount{\nextcell}
+                {mod(\x+\y-1,\order)+1}
+            \pgfmathsetcount{\nextport}
+                {\arity-\y+1}
+            \pgfmathsetcount{\depth}{(\x-1)*100/\order}
+            \inetwire[\inetwirestyle=\inetcolor!\the\depth!black]%
+                (c0\x.pax \y)(c1\the\nextcell.pax \the\nextport)
+        }
+    }
+\end{tikzpicture}
+\end{center}
+%\vspace*{-10mm}
+%{\color[rgb]{0.071,0,0.5}\Mundus\href{http://www.technodom.tn/formations/LaTeX.html}{Technodom.tn/formations/LaTeX.html}}\\
+\ding{125} Si \TeX{} est le typographe, \LaTeX{} est l'éditeur! Les deux transforment le manuscrit de l'auteur en une publication polie! \ding{126} \\
+Pour plus de détail, consulter notre formation \textbf{\LaTeX{}}:\\ 
+{\color[rgb]{0.071,0,0.5}\Mundus \hspace{0pt} \href{http://www.technodom.tn/learn/training/}{Technodom.tn/learn/training}}
+\end{multicols}
+
+\NewsItem{Démarrer avec \LaTeX{}}
+\begin{multicols}{2}
+
+\begin{lstlisting}[language={[LaTeX]TeX}, label=liste1, caption=Code d'une page de garde \LaTeX{}, inputencoding=utf8/latin1, frame=single,numbers=left, numberstyle=\tiny]
+\documentclass[11pt]{report}
+\usepackage[latin1]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{color}
+
+\begin{document}
+	\begin{center}
+	\textbf{\LARGE Article sur}\\
+		\vspace{30mm}
+		\begin{figure}[h]
+		\centering
+			\includegraphics[width=12cm]
+			{logolatex.png}
+	\end{figure}
+	\vspace{30mm}
+	\small{\textcolor{GreenTea}
+	{Auteur}}\\
+\vspace{1mm}
+\Large{\textbf{Mortadha DAHMANI}}
+\end{center}
+\end{document}
+\end{lstlisting}
+
+\vspace*{-1pt}
+
+\boxput *(0 ,1){
+\colorbox{white}{Aperçu du code}
+}{
+\setlength {\fboxsep }{7.5pt}
+\fbox {\begin{minipage}{75mm}
+	\vspace*{5mm}
+\begin{center}
+\textbf{\LARGE Article sur}\\
+	\vspace*{11mm}
+\begin{center}
+			\includegraphics[width=4cm]{logolatex.png}
+\end{center}
+	\vspace{11mm}
+	\small{\textcolor{GreenTea}{Auteur}}\\
+\vspace{1mm}
+\Large{\textbf{Mortadha \textsc{Dahmani}}}\\
+\begin{center}
+			\includegraphics[width=4cm]{LogoFreewaysAsso.png}
+\end{center}
+	\vspace*{5mm}
+\end{center}
+\end{minipage}}
+}
+\end{multicols}
+
+\begin{multicols}{2}
+
+\NewsAuthorEx{\small Références \hspace*{53mm} }{ }{
+\vspace*{-6mm}
+\begin{flushleft}
+\hspace*{3mm}\hspace*{4pt} \scriptsize \textcolor{GreenTea}{\Mundus~}\texttt{Wikipédia.fr}\\
+\hspace*{5mm} \scriptsize \textcolor{GreenTea}{\Mundus~}\texttt{Commentcamarche.net}
+\end{flushleft}
+}
+
+\NewsAuthorEx{\small \textcolor{GreenTea}{\textcolor{GreenTea}{M.}} M\textsuperscript{ed} Ali Mortadha}{Dahmani}{
+\vspace*{-6mm}
+\begin{flushright}
+\scriptsize \textcolor{GreenTea}{\Estatically~}Directeur \& Fondateur, TechnoDom Laboratory\\
+\scriptsize \textcolor{GreenTea}{\Estatically~}Président, Freeways Association\\
+\end{flushright}
+}
+\end{multicols}

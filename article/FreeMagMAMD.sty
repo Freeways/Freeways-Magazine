@@ -30,6 +30,23 @@
 \RequirePackage[colorlinks=false]{hyperref}
 \RequirePackage{geometry}
 
+\RequirePackage{enumitem}
+\RequirePackage{dingbat}
+
+%\usepackage[ddmmyyyy]{datetime}
+
+\RequirePackage[fancy,color=orange]{tikz-inet}
+\RequirePackage{tikz-3dplot}
+\tikzset{isometricXYZ/.style={x={(-0.866cm,-0.5cm)}, y={(0.866cm,-0.5cm)}, z={(0cm,1cm)}}}
+
+%: isometric South West : Z , South East : X , North : Y
+\tikzset{isometricZXY/.style={x={(0.866cm,-0.5cm)}, y={(0cm,1cm)}, z={(-0.866cm,-0.5cm)}}}
+
+%: isometric South West : Y , South East : Z , North : X
+\tikzset{isometricYZX/.style={x={(0cm,1cm)}, y={(-0.866cm,-0.5cm)}, z={(0.866cm,-0.5cm)}}}
+
+
+
 \geometry{
    paperwidth=216mm, paperheight=303mm,
    left=23mm,  %% or inner=23mm
@@ -56,8 +73,8 @@
 \lstset{
 language={[LaTeX]TeX},
 frameround=fttt,
-xleftmargin=15mm,
-xrightmargin=15mm,
+xleftmargin=5mm,
+xrightmargin=2mm,
 keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
 identifierstyle=\ttfamily,
 commentstyle=\color[rgb]{0.133,0.545,0.133},
@@ -82,6 +99,7 @@ inputencoding=utf8
 
 
 
+
 %% Concoct some colours of our own
 \definecolor[named]{GreenTea}{HTML}{808080}
 \definecolor[named]{MilkTea}{HTML}{FFFF00}
@@ -95,6 +113,10 @@ inputencoding=utf8
 %%% ---------------
 
 % Define separators
+
+\newlist{dingo}{itemize}{1}
+\setlist[dingo]{label=\ding{97}, font=\small \color{GreenTea}}
+
 \newcommand{\HorRule}[1]{\noindent\rule{\linewidth}{#1}} % Creating a horizontal rule
 
 \newcommand{\SepRule}{\noindent							 % Creating a separator
@@ -123,9 +145,8 @@ inputencoding=utf8
 
 \newcommand{\NewsItem}[1]{%
 		\usefont{T1}{augie}{m}{n} 	
-		\large #1 \vspace{4pt}
-		\par \normalsize \normalfont
-}
+		\large \textcolor{GreenTea}{#1} \vspace{4pt}
+		\par \normalsize \normalfont}
 		
 \newcommand{\NewsAuthor}[2]{%
 			\hfill par #1 \textsc{#2} \vspace{4pt}
@@ -136,6 +157,10 @@ inputencoding=utf8
 			\hfill By #1 \textsc{#2} \vspace{4pt}
 			\par \normalfont
 }	
+
+\newcommand{\NewsAuthorEx}[3]{%
+		\par \hfill \textbf{\texttt{#1}} \textsc{\textbf{\texttt{#2}}}{\par \hfill \texttt{#3}} \vspace{4pt}
+			\par \normalfont}	
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -276,7 +301,7 @@ text depth=17mm,text width=\pagenumwidth}}
     \fill[white, rounded corners] ([xshift=-15mm,yshift=-20mm]current page.north east) rectangle ([xshift=10mm,yshift=17mm]current page.south west);
     \end{tikzpicture}
     %% Then the right mark and the decorative line
-    \sffamily\itshape\small\nouppercase{\leftmark}\ 
+    \sffamily\itshape\small\nouppercase{\@nomChap}\ 
     \begin{tikzpicture}[xshift=.5\baselineskip,yshift=.25\baselineskip,remember picture, overlay,fill=GreenTea,draw=GreenTea]\fill (0,0) circle (3pt); \draw[semithick](0,0) -- (current page.east |- 0,0 );\end{tikzpicture}
   }
 
@@ -342,6 +367,7 @@ at (current page.north){\fontsize{32pt}{32pt}\selectfont #2};
 minimum width=\paperwidth,minimum height=3em,anchor=south]%
  at (current page.south) {#4};
 }
+\normalfont\normalsize
 }
 
 \newcommand{\FreeToC}{
@@ -352,12 +378,18 @@ minimum width=\paperwidth,minimum height=3em,anchor=south]%
 \mainmatter
 
 \pagestyle{headings}
+\normalfont\normalsize
 }
+
+\newcommand\nomChap[1]{\def\@nomChap{#1}}
 
 \newcommand{\FreeChap}[2]{
 \renewcommand\chapterillustration{#1}
 \chapter{#2}
+\nomChap{#2}
+
 }
+
 
 
 \newcommand{\note}{%
@@ -459,3 +491,6 @@ minimum width=\paperwidth,minimum height=3em,anchor=south]%
 \color{white}\JournalIssue{1}
 \end{center}
 }
+
+\newcommand{\parag}[1]{ #1\\}
+

@@ -1,0 +1,89 @@
+%\FreeChap{maga5}{Publication Assistée par Ordinateur}
+\FreeChap{adb-sideload}{Android Debug Bridge}
+
+\vspace*{-60mm}
+
+\NewsItem{Généralités}
+\begin{multicols}{2}
+ADB est l'acronyme de \texttt{Android Debug Bridge}, est un outil de communication entre l'appareil \textbf{Android} et l'\textbf{ordinateur} auquel ce dernier est connecté. Pour ceux qui ne le savent pas encore, Android est un système d'exploitation de la famille Linux (Multilingue), basé sur un noyau \textbf{Monolithique}, (noyau Linux modifié), sous licence \textbf{Apache 2.0} et \textbf{GNU GPL 2}, dont la console est un moyen rapide et puissant pour accéder au système. Ainsi, l'ADB permet d'accéder à la console de l'appareil Android via l'invite de commande.
+\end{multicols}
+
+\NewsItem{Utilités}
+\begin{multicols}{2}
+ADB est très puissant et permet d'administrer le système en profondeur. De ce fait il nous est possible d'installer des applications, déplacer des fichiers, redémarrer le Smartphone et possède aussi beaucoup de commandes possibles. Ce tutoriel recensera donc les commandes les plus couramment utilisées et détaillera les actions qui en découlent.
+\end{multicols}
+
+\NewsItem{Installation et conseils}
+\begin{multicols}{2}
+\textbf{\textcolor[rgb]{0.55,0,0}{\ding{97} Windows}}: Installer en toute simplicité les outils Android adb, aapt\\
+ADB fait partit des outils du SDK Android (Software Development Kit).\\
+Pour installer le SDK Android, rien de plus simple, extraire le .zip dans un répertoire de votre choix. Pour faciliter l'utilisation d'ADB, je vous conseille de créer un répertoire à la racine de votre disque dur. Dans ce dossier, copiez les fichiers suivants, que vous trouverez dans le dossier \textbf{\textcolor[rgb]{0.55,0,0}{android-sdk/platform-tools}} :
+\begin{itemize}
+	\item adb.exe
+	\item aapt.exe
+	\item AdbWinApi.dll
+	\item AdbWinUsbApi.dll
+\end{itemize}
+\end{multicols}
+	
+\begin{multicols}{2}
+	\begin{center}
+		\includegraphics[width=70mm]{adbfile.jpg}
+	\end{center}
+	
+Ce sera votre répertoire de travail, dans lequel vous mettrez et récupérerez les fichiers en transit entre votre ordinateur et votre Smartphone. La plus simple encore est d'ajouter (pas remplacer, ni écraser) "android-sdk/platform-tools" au PATH variable d'environnement , afin de ne pas devoir spécifier le chemin d'accès d'un outil du SDK chaque fois que nous en utiliserons un.\\
+
+Pour ce faire, copiez le chemin de stockage du dossier platform-tools dans le SDK Android (E:$\backslash$android-sdk-windows$\backslash$platform-tools). Ensuit menu démarrer ou sur le bureau, Poste de Travail et faites un clic avec le bouton droit Propriétés et allez à l'onglet Avancé>Variable d'environnement. Recherchez alors la variable Path au sein du menu déroulant et, une fois trouvée, cliquez sur Modifier. À la fin de la valeur, rajoutez le séparateur ; (point virgule) puis collez le chemin d'accès de android-sdk/platform-tools soit E:$\backslash$android-sdk-windows$\backslash$platform-tools que vous avez copié auparavant. Terminez l'opération en cliquant sur OK afin d'enregistrer les modifications effectuées.\\
+
+Exemple : Ancien Path contient : \textbf{\textcolor[rgb]{0.55,0,0}{E:$\backslash$Windows}}, sera : \textbf{\textcolor[rgb]{0.55,0,0}{E:$\backslash$Windows ; E:$\backslash$android-sdk-windows$\backslash$platform-tools}}
+
+Notez : Pour rendre effectifs les changements, vous n'avez pas besoin de redémarrer l'ordinateur. Vous pouvez dès à présent tester l'efficacité de la man\oe uvre effectuée, ouvrez l'invite de commande et tapez par exemple : adb.\\
+
+	\begin{center}
+		\includegraphics[width=80mm]{adbdos.jpg}
+	\end{center}
+
+Cette technique que j'utilise permet de simplifier au maximum les commandes, on n'a plus besoin de taper les chemins des fichiers qui peuvent être très longs.
+\end{multicols}
+
+\begin{multicols}{2}
+\textbf{\textcolor[rgb]{0.55,0,0}{\ding{97} Linux}}: Installer en toute simplicité les outils Android adb, aapt, apktool
+Vous serez content d'apprendre qu'un développeur du site XDA, Tahl, a écrit un script permettant d'installer en toute simplicité ADB.\\
+Ce script, qui se nomme andadb, va vous permettre:\\
+
+\begin{itemize}
+	\item de contrôler si votre configuration possède tous les prérequis (dépendances)
+	\item de télécharger et d'installer les SDK et NDK d'Android (Native Development Kit)
+	\item d'installer les commandes adb et fastboot
+	\item d'installer une extension nautilus pour déployé des fichiers depuis le gestionnaire de fichiers
+	\item de créer les règles nécessaires pour que vos équipements sous Android soit reconnues rapidement
+	\item d'installer des outils complémentaires comme git-repo (nécessaire pour récupérer les sources du projets Cyanogen), aapt et apktool (des outils de reverse engineering)
+	\item d'installer le support MTP pour le Galaxy Nexus
+\end{itemize}
+
+Pour les installer sur Ubuntu, Linux Mint et dérivées, il faut dans un premier temps installer le package git-core :
+
+\end{multicols}
+
+\begin{center}
+\textcolor[rgb]{0.55,0,0}{\huge En cours \dots{}}
+\end{center}
+
+\begin{multicols}{2}
+
+\NewsAuthorEx{\small Références \hspace*{53mm} }{ }{
+\vspace*{-6mm}
+\begin{flushleft}
+\hspace*{3mm}\hspace*{4pt} \scriptsize \textcolor{GreenTea}{\Mundus~}\texttt{Londatiga.net}\\
+\hspace*{5mm} \scriptsize \textcolor{GreenTea}{\Mundus~}\texttt{Developer.android.com}
+\end{flushleft}
+}
+
+\NewsAuthorEx{\small \textcolor{GreenTea}{\textcolor{GreenTea}{M.}} M\textsuperscript{ed} Ali Mortadha}{Dahmani}{
+\vspace*{-6mm}
+\begin{flushright}
+\scriptsize \textcolor{GreenTea}{\Estatically~}Directeur \& Fondateur, TechnoDom Laboratory\\
+\scriptsize \textcolor{GreenTea}{\Estatically~}Président, Freeways Association\\
+\end{flushright}
+}
+\end{multicols}

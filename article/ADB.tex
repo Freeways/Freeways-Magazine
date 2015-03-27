@@ -3,7 +3,7 @@
 
 \vspace*{-60mm}
 
-\NewsItem{Généralités}
+\NewsItem{\hspace*{6mm}Généralités}
 \begin{multicols}{2}
 ADB est l'acronyme de \texttt{Android Debug Bridge}, est un outil de communication entre l'appareil \textbf{Android} et l'\textbf{ordinateur} auquel ce dernier est connecté. Pour ceux qui ne le savent pas encore, Android est un système d'exploitation de la famille Linux (Multilingue), basé sur un noyau \textbf{Monolithique}, (noyau Linux modifié), sous licence \textbf{Apache 2.0} et \textbf{GNU GPL 2}, dont la console est un moyen rapide et puissant pour accéder au système. Ainsi, l'ADB permet d'accéder à la console de l'appareil Android via l'invite de commande.
 \end{multicols}
@@ -60,8 +60,102 @@ Ce script, qui se nomme andadb, va vous permettre:\\
 	\item d'installer des outils complémentaires comme git-repo (nécessaire pour récupérer les sources du projets Cyanogen), aapt et apktool (des outils de reverse engineering)
 	\item d'installer le support MTP pour le Galaxy Nexus
 \end{itemize}
+\end{multicols}
 
+\begin{multicols}{2}
 Pour les installer sur Ubuntu, Linux Mint et dérivées, il faut dans un premier temps installer le package git-core :
+
+\todo[inline, color=corp]{\footnotesize \textbf{sudo} apt-get install git-core}
+
+Récupérez le script depuis le site du projet :
+
+\todo[inline, color=corp]{\footnotesize \textbf{git clone} git://gist.github.com/1658401.git gist-1658401}
+
+Lui donnez les droits d'exécution :
+
+\todo[inline, color=corp]{\footnotesize \textbf{chmod} +x andadb.sh}
+\todo[inline, color=corp]{\footnotesize ./andadb.sh \textcolor[rgb]{0.24,0.7,0.44}{\#Exécuter le script}} 
+
+	\begin{center}
+		\includegraphics[width=80mm]{adbubuntu.jpg}
+	\end{center}
+	
+Un menu qui ressemble à l'image ci-dessus devrait apparaître. A partir de là vous devriez vous en sortir car le script est assez explicite. Le premier step, téléchargement et installation des dépendances prend à lui seul 30 minutes (bien sur cela dépend de votre ligne ADSL et des capacités de votre ordinateur).
+\end{multicols}
+
+\begin{multicols}{2}
+\textbf{Configuration du Smartphone}
+
+	\begin{center}
+		\includegraphics[width=80mm]{adbdebug.jpg}
+	\end{center}
+	
+Tout d'abord, il faut activez la fonction Débogage USB sur votre Smartphone Android :\\
+\textbf{\textcolor[rgb]{0.55,0,0}{2.0-2.3.x}} Menu -> Paramètres -> Applications -> Développement -> Débogage USB (coché)\\
+\textbf{\textcolor[rgb]{0.55,0,0}{3.0-4.1.x}} Menu -> Paramètres -> Options développeur -> Débogage USB (coché)\\
+\textbf{\textcolor[rgb]{0.55,0,0}{4.2-5.0.x}} Menu -> Paramètres -> Système -> A propos du téléphone -> Numéro de build,
+Tapoter 3 à 5 fois sur Numéro de build pour activer les options développeurs! (procéder désormais comme l'étape '3.0-4.1.x' pour activer le Débogage USB)\\
+En savoir plus: \url{http://bit.ly/1Ctw0kf}
+\end{multicols}
+
+\NewsItem{Liste des commandes ADB}
+\begin{multicols}{2}
+Pour les autres systèmes (Mac, Linux) il vous suffira de remplacer adb par ./adb dans toutes les commandes.\\
+
+Voici une liste partiel des commandes ADB pour modifier son appareil ou effectuer des actions diverses:
+\todo[inline, color=corp]{\footnotesize \textbf{adb} help} 
+Avoir la liste des commandes disponibles via l'ADB, cette dernière est très utile lorsque nous oublions les paramètres à passer aux commandes.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} logcat} 
+Visualiser le log spécifique à l'appareil ou à l'émulateur.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} devices} 
+Afficher la liste des émulateurs (lancés via le SDK Android) et des appareils branchés en USB à l'ordinateur et pouvant être administrés avec l'ADB.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} kill-server} 
+Cette commande a pour but d'éteindre le serveur ADB. Une fois cette commande tapée, il vous faudra relancer la commande \textbf{adb devices} pour remettre en ligne le serveur adb.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} start-server} 
+S'assurer qu'un serveur est toujours en cours d'exécution.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} wait-for-device} 
+Bloquer toute exécution jusqu'à ce qu'un appareil ou un émulateur soit connecté.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} get-state} 
+Connaître en temps souhaité l'état de l'appareil ou de l'émulateur connecté, hors-ligne (offline), bootloader, normal (device).
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} get-serialno}
+Obtenir le numéro de série de l'appareil connecté.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} -s "device" "commande"}
+Appliquer une commande spécifique sur un des terminaux listés.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} pull "chemin-accès-fichier-appareil" "chemin-accès-placer-fichier-ordinateur"}
+Déplacer un fichier se trouvant sur un appareil ou un émulateur vers l'ordinateur directement sans passer par la gestion de la carte mémoire.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} push "chemin-accès-placer-fichier-ordinateur" "chemin-accès-fichier-appareil"}
+Déplacer un fichier se trouvant sur l'ordinateur vers l'appareil ou l'émulateur connecté sans passer par la gestion de la carte mémoire.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} -s "device" shell \textcolor[rgb]{0.24,0.7,0.44}{\#adb -s emulator-5554 shell}}
+Ouvrir une saisie de commande shell, comme si nous étions sur le terminal Linux. De cette façon nous pouvons utiliser les commandes shell basiques de Linux.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} -s -d "device" shell "commande shell" \textcolor[rgb]{0.24,0.7,0.44}{\#adb -s emulator-5554 shell ls}}
+Cette commande permet d'utiliser les commandes shell basiques de Linux directement sur le terminal sélectionné, sans passer par l'application Terminal Emulator.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} -s emulator-5554 install nom-application.apk\\
+\footnotesize \textbf{adb} install "chemin-accès-fichier-apk"}
+Cette commande, en indiquant le chemin d'accès entier vers le fichier .apk à installer permet d'installer l'application souhaitée sur le Smartphone connecté à l'ordinateur ou bien sur l'émulateur directement. Cela peut être pratique pour tester son application avant déploiement final sur le Play Store.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} uninstall nom-application.apk}
+Permet de supprimer de l'appareil ou de l'émulateur un package sans passer par l'interface graphique. Il est également possible d'utiliser le paramètre "-k" afin de garder la mémoire cache de l'application si à l'avenir vous souhaitez réutiliser cette dernière.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} bugreport}
+Reporter toutes les données de l'appareil ou de l'émulateur pouvant avoir été incluses dans le bug report.
+
+\todo[inline, color=corp]{\footnotesize \textbf{adb} reboot "mode souhaité"\textcolor[rgb]{0.24,0.7,0.44}{\#adb reboot recovery}}
+Rebooter (NDLR : redémarrez) votre appareil ou l'émulateur dans le mode souhaité. Cela est souvent utilisé pour flasher une nouvelle ROM ou un nouveau packlage .zip.
+
+Pour ceux qui veulent plus de détail sur les commandes ADB, consulter \url{http://developer.android.com/tools/help/adb.html}
 
 \end{multicols}
 
@@ -82,8 +176,8 @@ Pour les installer sur Ubuntu, Linux Mint et dérivées, il faut dans un premier t
 \NewsAuthorEx{\small \textcolor{GreenTea}{\textcolor{GreenTea}{M.}} M\textsuperscript{ed} Ali Mortadha}{Dahmani}{
 \vspace*{-6mm}
 \begin{flushright}
-\scriptsize \textcolor{GreenTea}{\Estatically~}Directeur \& Fondateur, TechnoDom Laboratory\\
-\scriptsize \textcolor{GreenTea}{\Estatically~}Président, Freeways Association\\
+\scriptsize \textcolor{GreenTea}{\ding{50}~}Directeur \& Fondateur, TechnoDom Laboratory\\
+\scriptsize \textcolor{GreenTea}{\ding{50}~}Président, Freeways Association\\
 \end{flushright}
 }
 \end{multicols}

@@ -30,6 +30,8 @@
 \RequirePackage[colorlinks=false]{hyperref}
 \RequirePackage{geometry}
 
+\RequirePackage[colorinlistoftodos]{todonotes}
+\RequirePackage[tikz]{bclogo}
 \RequirePackage{enumitem}
 \RequirePackage{dingbat}
 
@@ -107,7 +109,8 @@ inputencoding=utf8
 \definecolor[named]{LightSalmon}{HTML}{580000}%chap color band
 \definecolor[named]{LightSalmon2}{HTML}{FFFF00}%TOC color band
 
-
+\definecolor{corp}{RGB}{232,232,232}
+\definecolor{cont}{RGB}{128,128,128}
 %%% ---------------
 %%% DEFINITIONS
 %%% ---------------
@@ -160,7 +163,11 @@ inputencoding=utf8
 
 \newcommand{\NewsAuthorEx}[3]{%
 		\par \hfill \textbf{\texttt{#1}} \textsc{\textbf{\texttt{#2}}}{\par \hfill \texttt{#3}} \vspace{4pt}
-			\par \normalfont}	
+			\par \normalfont}
+				
+\newcommand{\NewsPoste}[1]{%
+				\scriptsize \textcolor{GreenTea}{\ding{50} \hspace{0pt}} #1
+				}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
